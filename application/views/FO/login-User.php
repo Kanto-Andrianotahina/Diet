@@ -30,13 +30,13 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome !</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Login</h1>
                                     </div>
                                     <form class="user" action="<?php echo base_url('UserController/login')?>" method="post">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address..." name="mail">
+                                                placeholder="Entrer votre Email Address..." name="mail">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
@@ -46,7 +46,7 @@
                                         <hr>
                                     </form>
                                     <div class="text-center">
-                                        <a class="small" href="<?php echo base_url('FO/from-user')?>">Create an Account!</a>
+                                        <a class="small" href="<?php echo base_url('FormController/form')?>">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>
