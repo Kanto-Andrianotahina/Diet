@@ -48,7 +48,7 @@ class User extends CI_Model {
         return $this->$email;
     }
 
-    function set_id_genre($id_gender) {
+    function set_id_gender($id_gender) {
         if (!isset($id_gender)) throw new Exception("Champ genre est vide");
         $this->$id_gender = $id_gender;
     }
@@ -71,9 +71,17 @@ class User extends CI_Model {
         $this->$weigth = $weigth;
     }
 
+    function get_weigth() {
+        return $this->$weigth;
+    }
+
     function set_password($password) {
         if (!isset($password)) throw new Exception("Password est vide");
         $this->$password = $password;
+    }
+
+    function get_password() {
+        return $this->$password;
     }
 
     public function insert() {
