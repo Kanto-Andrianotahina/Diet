@@ -102,5 +102,19 @@ class User extends CI_Model {
             return $user;
         } else throw new Exception("Aucun utilisateur correspondant");
     }
+    public function getUserById($id){
+        $this->load->database();
+        $sql = "select * from user where id = '%s'";
+        $request = sprintf($sql,$id);
+        $this->db->query($request);
+        $data = array();
+        if ($request->num_rows() > 0) {
+            $data = $request->result();
+        }else {
+            $error = $this->db->error();
+            echo "Error occurred: " . $error['message'];
+        }
+    }
+    
 
 }
