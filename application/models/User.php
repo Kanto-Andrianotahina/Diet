@@ -110,7 +110,6 @@ class User extends CI_Model {
         $this->load->database();
         $sql = "INSERT INTO user (firstname, name, birthday, mail, id_gender, size, weigth, password) VALUES (%s, %s, %s, %s, %d, %d, %d, %s)";
         $this->db->query(sprintf($sql, $this->db->escape($this->get_first_name()), $this->db->escape($this->get_name()), $this->db->escape($this->get_birthday()), $this->db->escape($this->get_email()), $this->get_id_gender(), $this->get_size(), $this->get_weigth(), $this->db->escape($this->get_password())));
-        var_dump(sprintf($sql, $this->db->escape($this->get_first_name()), $this->db->escape($this->get_name()), $this->db->escape($this->get_birthday()), $this->db->escape($this->get_email()), $this->get_id_gender(), $this->get_size(), $this->get_weigth(), $this->db->escape($this->get_password())));
         $this->db->close();
     }
     
