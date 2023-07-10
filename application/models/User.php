@@ -88,5 +88,21 @@ class User extends CI_Model {
         $sql = "INSERT INTO user (firstname, name, birthday, mail, id_gender, size, weigth, password) VALUES ('%s', '%s', '%s', '%s', %d, %d, %d, '%s')";
         $this->db->query(sprintf($sql, $this->$db->escape($this->get_first_name()), $this->$db->escape($this->get_name()), $this->$db->escape($this->get_birthday()), $this->$db->escape($this->get_email()), $this->$db->escape($this->get_id_gender()), $this->$db->escape($this->get_size()), $this->$db->escape($this->get_weigth()), $this->$db->escape($this->get_password())));
     }
+    
+    public function checkUser($mail,$password){
+        $this->load->database();
+        $sql = "SELECT mail, password FROM user where mail = '%s' AND password = '%s'";
+        $request = sprintf($sql,$mail,$password);
+        $this->db->query($request);
+        $data = array();
+        $data = $sql->result();
+        if ($data['mail'] == $mail && $data['password'] == $password ) {
+            $this->load->view('FO/home-User');
+        }
+        else {
+            $error = $this->db->error();
+            echo "Error occurred: " . $error['message'];
+        }
+    }
 
 }

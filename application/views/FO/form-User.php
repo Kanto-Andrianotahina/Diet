@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Form-User</title>
 
     <link href="<?php echo base_url('assets/vendor/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/css/sb-admin-2.min.css'); ?>" rel="stylesheet" type="text/css">
+
 </head>
 
 <body class="bg-gradient-primary">
@@ -28,6 +28,7 @@
                         <div class="p-5">
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Inscription</h1>
+
                             </div>
                             <form class="user" action="" method="post">
                                 <div class="form-group row">
@@ -52,6 +53,7 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="checkbox" class="" id="exampleInputEmail" name="" required>
+
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -69,6 +71,7 @@
                                 <hr>
                             <div class="text-center">
                                 <a class="small" href="<?php echo base_url('UserController/index')?>">Vous avez deja un compte?Login!</a>
+
                             </div>
                         </div>
                     </div>
