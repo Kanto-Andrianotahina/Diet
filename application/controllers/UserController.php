@@ -1,14 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
     
-    class UserController extends CI_Controller {
-
-        public function login() {
-        
-        } 
-
-        public function formulaire() {
-            $this->load->view("FO/form-User.php");
+    class UserController extends CI_Controller{
+        public function index(){
+            $mail=$this->input->post('mail');
+            $password=$this->input->post('password');
+            $this->load->model('User');
+            $this->User->checkUser($mail,$password);
         }
         
         public function sign_up() {
