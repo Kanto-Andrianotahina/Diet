@@ -100,8 +100,7 @@ class User extends CI_Model {
             $this->load->view('FO/home-User');
         }
         else {
-            $error = $this->db->error();
-            echo "Error occurred: " . $error['message'];
+            $this->load->view('FO/login-User');
         }
     }
 

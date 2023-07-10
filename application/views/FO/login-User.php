@@ -32,17 +32,17 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Login</h1>
                                     </div>
-                                    <form class="user" action="<?php echo base_url('UserController/login')?>" method="post">
+                                    <form class="user" action="<?php echo base_url('UserController/index')?>" method="post">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Entrer votre Email Address..." name="mail">
+                                                placeholder="Entrer votre adresse email..." name="mail">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password" name="password">
+                                                id="exampleInputPassword" placeholder="Mot de passe" name="password">
                                         </div>
-                                        <input type="submit" class="form-control form-control-user" value="Login" id="exampleInputPassword">
+                                        <input type="submit" class="form-control form-control-user" value="Se connecter" id="exampleInputPassword">
                                         <hr>
                                     </form>
                                     <div class="text-center">
