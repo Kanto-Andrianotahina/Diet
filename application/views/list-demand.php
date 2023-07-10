@@ -383,9 +383,9 @@
                                     <tbody>
                                         <?php foreach($demand as $row){ ?>
                                         <tr>
-                                            <td><?php echo $row->id_user?></td>
-                                            <td><?php echo $row->id_code?></td>
-                                            <td><?php echo $row->date?></td>
+                                            <td><?php echo $row['id_user'];?></td>
+                                            <td><?php echo $row['id_code'];?></td>
+                                            <td><?php echo $row['date'];?></td>
                                             <td><i class="fas fa-check icon" style="color: green;"></i></td>
                                             <td><i class="fas fa-times icon" style="color: red;"></i></td>
                                         </tr>

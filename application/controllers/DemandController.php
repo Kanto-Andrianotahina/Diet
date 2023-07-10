@@ -4,12 +4,15 @@
     class DemandController extends CI_Controller{
 
         public function index(){
-            $this->load->view('list-demand');
+            $this->load->model('demand');
+            $data['demand'] = $this->demand->get_all_demand();
+            $this->load->view('list-demand',$data);
         }
+
         public function List_demand(){
             $this->load->model('demand');
             $data['demand'] = $this->demand->get_all_demand();
-            redirect('DemandController/index',$data);
+            $this->load->view('DemandController/index',$data);
         }
         public function validate(){
             $id_demand = $this->input->post('id_demand');

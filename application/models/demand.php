@@ -64,7 +64,7 @@
 
         public function get_all_demand(){
             $this->load->database();
-            $query = $this->db->query("select * from demand where etat = -10");
+            $query = $this->db->query("select * from demand where state = -10");
             $data = array();
             if ($query->num_rows() > 0) {
                 $data = $query->result();
@@ -72,12 +72,26 @@
                 $error = $this->db->error();
                 echo "Error occurred: " . $error['message'];
             }
+            return $data;
         }
 
         public function change_state($id_demande, $state) {
             $this->load->database();
             $query = sprintf("UPDATE demand SET state = '%s' WHERE id = %d", $state, $id_demande);
             $this->db->query($query);
+        }
+
+        public function get_demand_by_Id($id){
+            $this->load->database();
+            $query = $this->db->query("SELECT demand.*, code.num_code FROM demand JOIN code ON demand.id_code = code.id WHERE demand.state = -10 AND demand.id = 1;"); 
+            $data = array();
+            if ($query->num_rows() > 0) {
+                $data = $query->result();
+            }else {
+                $error = $this->db->error();
+                echo "Error occurred: " . $error['message'];
+            }
+            return $data;
         }
     }
 ?>
