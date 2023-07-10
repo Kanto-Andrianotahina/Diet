@@ -32,7 +32,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Login</h1>
                                     </div>
-                                    <form class="user" action="<?php echo base_url('UserController/index')?>" method="post">
+                                    <form class="user" action="<?php echo base_url('UserController/login')?>" method="post">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
@@ -42,11 +42,14 @@
                                             <input type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Mot de passe" name="password">
                                         </div>
+                                        <?php if(isset($error)) { ?>
+                                            <p style = "color: red; font-size: large"><?php echo($error); ?> </p>
+                                        <?php } ?>
                                         <input type="submit" class="form-control form-control-user" value="Se connecter" id="exampleInputPassword">
                                         <hr>
                                     </form>
                                     <div class="text-center">
-                                        <a class="small" href="<?php echo base_url('FormController/form')?>">Create an Account!</a>
+                                        <a class="small" href="<?php echo base_url('FormController/')?>">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>

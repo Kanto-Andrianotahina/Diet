@@ -52,8 +52,13 @@
                                         placeholder="Adresse email" name="" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="checkbox" class="" id="exampleInputEmail" name="" required>
+                                    <select id="exampleInputEmail" class="" name="id_gender">
+                                        <?php for ($i = 0; $i < count($gender); $i++) { ?>
+                                            <option value="<?php echo $gender[$i]->get_id_gender(); ?>"><?php echo $gender[$i]->get_name(); ?></option>
+                                        <?php } ?>
+                                    </select>
 
+                                    </select>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
