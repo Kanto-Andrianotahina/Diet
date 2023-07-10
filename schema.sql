@@ -3,7 +3,7 @@ creata database regime
 use regime
 
 CREATE table gender (
-    id              int auto_incerment PRIMARY KEY,
+    id              int auto_increment PRIMARY KEY,
     gender          VARCHAR(30)
 );
 
@@ -20,7 +20,8 @@ create table user (
     weigth          DECIMAL(3,3),
     password        VARCHAR(30)
 );
-INSERT INTO user (firstname, name, birthday, mail, id_gender, size, weight, password)
+
+INSERT INTO user (firstname, name, birthday, mail, id_gender, size, weigth, password)
 VALUES ('John', 'Doe', '1990-05-15', 'john.doe@example.com', 1, 180.5, 75.2, 'password123'),
         ('Andrianotahina', 'Kanto', '2003-08-21', 'kanto@gmail.com', 1, 170.5, 67, '123'),
         ('Razafimiandrisoa', 'Tendry', '2003-04-04', 'tendry@gmail.com', 1, 165.5, 50, '456'),
