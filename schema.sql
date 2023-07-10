@@ -2,7 +2,7 @@ creata database regime
 
 use regime
 
-CREATE gender (
+CREATE table gender (
     id              int auto_incerment PRIMARY KEY,
     gender          VARCHAR(30)
 );
