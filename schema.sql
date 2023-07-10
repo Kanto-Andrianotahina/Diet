@@ -28,18 +28,11 @@ VALUES ('John', 'Doe', '1990-05-15', 'john.doe@example.com', 1, 'password123'),
         ('Raherinirina', 'Mino', '2002-04-09', 'mino@gmail.com', 2, '789'),
         ('Jane', 'Smith', '1985-09-22', 'jane.smith@example.com', 2, 'pass456');
 
-create table state (
-    id              INT AUTO_INCREMENT PRIMARY KEY,
-    disponibilite           VARCHAR(30)
-);
-insert into STATE (disponibilite) VALUES ('disponible'),('non disponible');
-
 CREATE table code (
     id              INT AUTO_INCREMENT PRIMARY KEY,
     num_code        NUMERIC UNIQUE,
     price           DOUBLE,
-    id_state           INT default 1,
-    FOREIGN KEY (id_state) REFERENCES state(id)
+    state           INT default 1
 );
 
 -- Insertion des données pour num_code de 10000000 à 10000020 avec price = 5000.00
@@ -118,9 +111,15 @@ VALUES
     (30000020, 20000.00);
 
 
+CREATE TABLE demand (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_user INT,
+    id_code INT,
+    state INT NOT NULL default -10,
+    date DATE,
+    FOREIGN KEY (id_user) REFERENCES user(id),
+    FOREIGN KEY (id_code) REFERENCES code(id)
+);
 
 
-
-
-
-
+INSERT INTO demand (id_user, id_code, state, date) VALUES (2, 2, 1, '2023-04-12');
