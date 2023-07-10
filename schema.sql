@@ -2,20 +2,20 @@ creata database regime
 
 use regime
 
-CREATE table gender (
-    id              int auto_increment PRIMARY KEY,
+CREATE TABLE gender (
+    id              INT AUTO_INCREMENT PRIMARY KEY,
     gender          VARCHAR(30)
 );
 
-INSERT into gender (gender) VALUES ('Homme'),('Femme');
+INSERT INTO gender (gender) VALUES ('Homme'),('Femme');
 
-create table user (
-    id              int auto_increment PRIMARY key,
+CREATE TABLE user (
+    id              INT AUTO_INCREMENT PRIMARY KEY,
     firstname       VARCHAR(30),
     name            VARCHAR(30),
-    birthday        date,
+    birthday        DATE,
     mail            VARCHAR(50),
-    id_gender       int,
+    id_gender       INT,
     size            DECIMAL(3,3),
     weigth          DECIMAL(3,3),
     password        VARCHAR(30)
