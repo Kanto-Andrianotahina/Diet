@@ -111,9 +111,15 @@ VALUES
     (30000020, 20000.00);
 
 
+CREATE TABLE demand (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_user INT,
+    id_code INT,
+    state INT NOT NULL default -10,
+    date DATE,
+    FOREIGN KEY (id_user) REFERENCES user(id),
+    FOREIGN KEY (id_code) REFERENCES code(id)
+);
 
 
-
-
-
-
+INSERT INTO demand (id_user, id_code, state, date) VALUES (2, 2, 1, '2023-04-12');
