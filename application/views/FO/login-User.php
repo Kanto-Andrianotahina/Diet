@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="<?php echo base_url('assets/vendor/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url('assets/css/sb-admin-2.min.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/sb-admin-2.min.css'); ?>" rel="stylesheet" type="text/css">
     
     <title>Login</title>
 </head>
@@ -32,21 +32,21 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome !</h1>
                                     </div>
-                                    <form class="user" action="<?php echo base_url('UserController/login')?>">
+                                    <form class="user" action="<?php echo base_url('UserController/login')?>" method="post">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                                placeholder="Enter Email Address..." name="mail">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                                id="exampleInputPassword" placeholder="Password" name="password">
                                         </div>
                                         <input type="submit" class="form-control form-control-user" value="Login" id="exampleInputPassword">
                                         <hr>
                                     </form>
                                     <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
+                                        <a class="small" href="<?php echo base_url('FO/from-user')?>">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>
