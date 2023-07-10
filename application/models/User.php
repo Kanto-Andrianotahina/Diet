@@ -120,7 +120,6 @@ class User extends CI_Model {
         $request = sprintf($sql,$mail,$password);
         $this->db->query($request);
         $data = array();
-        $data = $sql->result();
         if ($data['mail'] == $mail && $data['password'] == $password ) {
             $this->load->view('FO/home-User');
         }
@@ -128,5 +127,19 @@ class User extends CI_Model {
             $this->load->view('FO/login-User');
         }
     }
+    public function getUserById($id){
+        $this->load->database();
+        $sql = "select * from user where id = '%s'";
+        $request = sprintf($sql,$id);
+        $this->db->query($request);
+        $data = array();
+        if ($request->num_rows() > 0) {
+            $data = $request->result();
+        }else {
+            $error = $this->db->error();
+            echo "Error occurred: " . $error['message'];
+        }
+    }
+    
 
 }
