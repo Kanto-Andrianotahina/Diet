@@ -30,29 +30,33 @@
                                 <h1 class="h4 text-gray-900 mb-4">Inscription</h1>
 
                             </div>
-                            <form class="user" action="" method="post">
+                            <?php if (!empty($error)) { ?>
+                                <div class="error-message" style="color: red;"><?php echo $error; ?></div>
+                            <?php } ?>
+
+                            <form class="user" action="<?php echo base_url('UserController/sign_up');?>" method="post">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder=" Nom" name=""required>
+                                            placeholder=" Nom" name="firstname"required>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Prenom" name=""required>
+                                            placeholder="Prenom" name="name"required>
                                     </div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label class="label label-default">Date de naissance</label>
                                     <input type="date" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Date de naissance" name="" required>
+                                        placeholder="Date de naissance" name="birthday" required>
                                 </div>
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Adresse email" name="" required>
+                                        placeholder="Adresse email" name="mail" required>
                                 </div>
                                 <div class="form-group">
-                                    <select id="exampleInputEmail" class="" name="id_gender">
+                                    <select id="exampleInputEmail" class="" name="id_gender"> Genre
                                         <?php for ($i = 0; $i < count($gender); $i++) { ?>
                                             <option value="<?php echo $gender[$i]->get_id_gender(); ?>"><?php echo $gender[$i]->get_name(); ?></option>
                                         <?php } ?>
@@ -63,16 +67,18 @@
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Mot de passe" name="" required>
+                                            id="exampleInputPassword" placeholder="Mot de passe" name="password1" required>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Confirmation mot de passe" name="" required>
+                                            id="exampleRepeatPassword" placeholder="Confirmation mot de passe" name="password2" required>
                                     </div>
                                 </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                <!-- < href="login.html" class="btn btn-primary btn-user btn-block">
                                     S'inscrire
-                                </a>
+                                </a> -->
+                                <input type="submit" value="S'inscrire" class="btn btn-primary btn-user btn-block">
+                            </form>
                                 <hr>
                             <div class="text-center">
                                 <a class="small" href="<?php echo base_url('UserController/index')?>">Vous avez deja un compte?Login!</a>

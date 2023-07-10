@@ -115,6 +115,12 @@ class User extends CI_Model {
             echo "Error occurred: " . $error['message'];
         }
     }
+
+    public function check_password($pwd1,$pwd2) {
+        if ($pwd1 == $pwd2){
+            return $pwd1;
+        } else throw new Exception("Mot de passe incorrect");
+    }
     
 
 }
