@@ -135,8 +135,6 @@
                 $profit += $money->get_profit();
                 $loss += $money->get_loss();
             }
-            var_dump($profit);
-            var_dump($loss);
             $wallet->set_total($profit - $loss);
             return $wallet;
         }

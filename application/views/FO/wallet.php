@@ -1,8 +1,12 @@
 <section class="food_menu gray_bg">
 <div class="container row mx-auto">
-    <div class="col-md-6 w-50 bg-light p-4 shadow rounded">
-    <h3>Transaction</h3>    
-    <table class="table">
+    <div class="col-md-3 w-50 bg-light p-4 shadow rounded" style="height: 200px;">
+        <h3>Montant Total de votre port-monnaie : </h3>
+        <h2><?=$wallet->get_total(); ?> Ariary</h2>
+    </div>
+    <div class="col-md-6 w-50 bg-light p-4 shadow rounded" style="margin-left: 200px;">
+        <h3>Transaction</h3>    
+        <table class="table">
             <tr>
                 <th>Date</th>
                 <th>Numero</th>
@@ -18,9 +22,5 @@
         </table>
     </div>
     
-    <div class="col-md-3 w-50 col-md-offset-2 bg-light p-4 shadow rounded" style="margin-left: 200px; height: 200px;">
-        <h3>Montant Total de votre port-monnaie : </h3>
-        <h2><?=$wallet->get_total() ?> Ariary</h2>
-    </div>
 </div>
 </section>
