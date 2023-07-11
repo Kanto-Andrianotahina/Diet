@@ -110,12 +110,12 @@ class Statistique extends CI_Model {
         for ($k = 0; $k < count($database); $k++) {
             if ($database[$k]->get_month() != null) {
                 for ($i = 0; $i < $database[$k]->get_month() - $month; $i++) {
-                    $res[] = 0;
+                    array_push($res, 0);
                 }
-                $res[] = $database[$k]->get_nb_user();
+                array_push($res,$database[$k]->get_nb_user()-0);
                 if ($k == count($database) - 1) {
                     for ($i = 0; $i < 12 - $database[$k]->get_month(); $i++) {
-                        $res[] = 0;
+                        array_push($res, 0);  
                     }
                 }
                 $month = count($res) + 1;
