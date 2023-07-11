@@ -35,8 +35,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $email = $this->input->post('mail');
                 $id_gender = $this->input->post('id_gender');
                 $state = $this->input->post('state');
+                var_dump($state);
                 $password =$this->User->check_password($this->input->post('password1'),$this->input->post('password2')) ;
-                $user = $this->User->getInstance($name, $first_name, $birthday, $email, $id_gender, $password,$state);
+                $user = $this->User->getInstance(0,$name, $first_name, $birthday, $email, $id_gender, $password,$state);
+                var_dump($user);
                 $user->insert();
                 redirect('UserController/');
             } catch (\Exception $e) {

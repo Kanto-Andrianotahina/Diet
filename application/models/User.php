@@ -13,6 +13,7 @@ class User extends CI_Model {
     private $weigth;
     private $size;
     private $date;
+    private $state;
 
     public function getInstance(
         $id = 0,
@@ -22,7 +23,7 @@ class User extends CI_Model {
         $emails = '',
         $id_genders = 0,
         $passwords = '',
-        $state
+        $state = 0
     ){
         $user = new User();
         $user->set_id($id);
@@ -84,7 +85,6 @@ class User extends CI_Model {
     }
 
     public function set_id($id) {
-        if (empty($id)) throw new Exception("Aucune d'identite retrouvee");
         $this->id = $id;
     }
 
@@ -148,9 +148,9 @@ class User extends CI_Model {
 
     public function insert() {
         $this->load->database();
-        $sql = "INSERT INTO user (firstname, name, birthday, mail, id_gender, password) VALUES (%s, %s, %s, %s, %d, %s)";
-        $this->db->query(sprintf($sql, $this->db->escape($this->get_first_name()), $this->db->escape($this->get_name()), $this->db->escape($this->get_birthday()), $this->db->escape($this->get_email()), $this->get_id_gender(), $this->db->escape($this->get_password())));
-        var_dump(sprintf($sql, $this->db->escape($this->get_first_name()), $this->db->escape($this->get_name()), $this->db->escape($this->get_birthday()), $this->db->escape($this->get_email()), $this->get_id_gender(), $this->db->escape($this->get_password())));
+        $sql = "INSERT INTO user (firstname, name, birthday, mail, id_gender, password,state) VALUES (%s, %s, %s, %s, %d, %s,%d)";
+        $this->db->query(sprintf($sql, $this->db->escape($this->get_first_name()), $this->db->escape($this->get_name()), $this->db->escape($this->get_birthday()), $this->db->escape($this->get_email()), $this->get_id_gender(), $this->db->escape($this->get_password()), $this->get_state()));
+        var_dump(sprintf($sql, $this->db->escape($this->get_first_name()), $this->db->escape($this->get_name()), $this->db->escape($this->get_birthday()), $this->db->escape($this->get_email()), $this->get_id_gender(), $this->db->escape($this->get_password()), $this->get_state()));
         $this->db->close();
     }
 
@@ -159,7 +159,7 @@ class User extends CI_Model {
         $sql = "SELECT * FROM user WHERE mail = '%s' AND password = '%s'";
         $request = sprintf($sql, $mail, $password);
         $query = $this->db->query($request);
-    
+        var_dump($request);
         if ($query->num_rows() > 0) {
             $row = $query->row();
             $user = $this->getInstance($row->id,$row->name, $row->firstname, $row->birthday, $row->mail, $row->id_gender, $row->password, $row->STATE);
