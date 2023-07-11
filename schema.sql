@@ -17,16 +17,17 @@ CREATE TABLE user (
     mail            VARCHAR(50),
     id_gender       INT,
     password        VARCHAR(30),
+    STATE           int,
     FOREIGN KEY (id_gender) REFERENCES GENDER(ID)
 );
 
-INSERT INTO user (firstname, name, birthday, mail, id_gender, password)
-VALUES ('John', 'Doe', '1990-05-15', 'john.doe@example.com', 1, 'password123'),
-        ('Andrianotahina', 'Kanto', '2003-08-21', 'kanto@gmail.com', 1, '123'),
-        ('Razafimiandrisoa', 'Tendry', '2003-04-04', 'tendry@gmail.com', 1, '456'),
-        ('Razafimiandrisoa', 'Tendry', '2003-04-04', 'tendry@gmail.com', 1, '456'),
-        ('Raherinirina', 'Mino', '2002-04-09', 'mino@gmail.com', 2, '789'),
-        ('Jane', 'Smith', '1985-09-22', 'jane.smith@example.com', 2, 'pass456');
+INSERT INTO user (firstname, name, birthday, mail, id_gender, password,state)
+VALUES ('John', 'Doe', '1990-05-15', 'john.doe@example.com', 1, 'password123',1),
+        ('Andrianotahina', 'Kanto', '2003-08-21', 'kanto@gmail.com', 1, '123',2),
+        ('Razafimiandrisoa', 'Tendry', '2003-04-04', 'tendry@gmail.com', 1, '456',1),
+        ('Razafimiandrisoa', 'Tendry', '2003-04-04', 'tendry@gmail.com', 1, '456',2),
+        ('Raherinirina', 'Mino', '2002-04-09', 'mino@gmail.com', 2, '789',2),
+        ('Jane', 'Smith', '1985-09-22', 'jane.smith@example.com', 2, 'pass456',1);
 
 CREATE table code (
     id              INT AUTO_INCREMENT PRIMARY KEY,
@@ -109,6 +110,31 @@ VALUES
     (30000018, 20000.00),
     (30000019, 20000.00),
     (30000020, 20000.00);
+
+CREATE table target (
+    id int auto_increment PRIMARY KEY,
+    target VARCHAR(30)
+);
+
+INSERT into TARGET (target) VALUES ('Augmenter le poids'),('Diminuer le poids');
+
+CREATE table regime (
+    id int AUTO_INCREMENT PRIMARY KEY,
+    regime VARCHAR(30),
+    id_target int,
+    weigth_start double,
+    weigth_end double,
+    duration int,
+    price DOUBLE,
+    FOREIGN KEY (id_target) REFERENCES TARGET(id)
+);
+INSERT INTO regime (regime, id_target, weigth_start, weigth_end, duration,price)
+VALUES 
+    ('Régime Amincissant', 2, 2, 3, 30,15000),
+    ('Régime Prise de Masse Musculaire', 1, 1, 2, 60,10000),
+    ('Régime Équilibré', 1, 1.5, 4, 45,5000),
+    ('Régime Végétarien', 1, 1, 5, 60,30000),
+    ('Régime Cétogène', 2, 3, 4, 90,12000);
 
 
 CREATE TABLE demand (

@@ -10,8 +10,6 @@ class User extends CI_Model {
     private $email;
     private $id_gender;
     private $password;
-    private $size;
-    private $weigth;
 
     public function getInstance(
         $names = '',
@@ -19,7 +17,8 @@ class User extends CI_Model {
         $birthdays = '',
         $emails = '',
         $id_genders = 0,
-        $passwords = ''
+        $passwords = '',
+        $state
     ){
         $user = new User();
         $user->set_name($names);
@@ -28,6 +27,7 @@ class User extends CI_Model {
         $user->set_email($emails);
         $user->set_id_gender($id_genders);
         $user->set_password($passwords);
+        $user->set_state($state);
         return $user;
     }
 
@@ -120,10 +120,20 @@ class User extends CI_Model {
         return $this->password;
     }
 
+    public function set_state($state) {
+        if (empty($state)) throw new Exception("Etes - vous Admin ou Utilisateur?");
+        $this->state = $state;
+    }
+
+    public function get_state() {
+        return $this->state;
+    }
+
     public function insert() {
         $this->load->database();
         $sql = "INSERT INTO user (firstname, name, birthday, mail, id_gender, password) VALUES (%s, %s, %s, %s, %d, %s)";
         $this->db->query(sprintf($sql, $this->db->escape($this->get_first_name()), $this->db->escape($this->get_name()), $this->db->escape($this->get_birthday()), $this->db->escape($this->get_email()), $this->get_id_gender(), $this->db->escape($this->get_password())));
+        var_dump(sprintf($sql, $this->db->escape($this->get_first_name()), $this->db->escape($this->get_name()), $this->db->escape($this->get_birthday()), $this->db->escape($this->get_email()), $this->get_id_gender(), $this->db->escape($this->get_password())));
         $this->db->close();
     }
 
@@ -135,7 +145,7 @@ class User extends CI_Model {
     
         if ($query->num_rows() > 0) {
             $row = $query->row();
-            $user = $this->getInstance($row->name, $row->firstname, $row->birthday,$row->mail, $row->id_gender, $row->password);
+            $user = $this->getInstance($row->name, $row->firstname, $row->birthday,$row->mail, $row->id_gender, $row->password,$row->STATE);
             return $user;
         } else throw new Exception("Aucun utilisateur correspondant");
     }
@@ -145,13 +155,11 @@ class User extends CI_Model {
         $sql = "select * from user where id = '%s'";
         $request = sprintf($sql,$id);
         $this->db->query($request);
-        $data = array();
         if ($request->num_rows() > 0) {
-            $data = $request->result();
-        }else {
-            $error = $this->db->error();
-            echo "Error occurred: " . $error['message'];
-        }
+            $row = $query->row();
+            $user = $this->getInstance($row->name, $row->firstname, $row->birthday,$row->mail, $row->id_gender, $row->password,$row->state);
+            return $user;
+        } else throw new Exception("Aucun utilisateur corredpondant");
     }
 
     public function check_password($pwd1,$pwd2) {

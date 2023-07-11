@@ -61,7 +61,9 @@
                                             <option value="<?php echo $gender[$i]->get_id_gender(); ?>"><?php echo $gender[$i]->get_name(); ?></option>
                                         <?php } ?>
                                     </select>
-
+                                    <select id="exampleInputEmail" class="" name="state"> Status
+                                            <option value="1"> Simple Utilisateur</option>
+                                            <option value="2"> Admin</option>
                                     </select>
                                 </div>
                                 <div class="form-group row">
