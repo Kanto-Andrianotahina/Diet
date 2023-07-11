@@ -118,8 +118,8 @@
                                         <div class="d-flex justify-content-around media-body align-self-center p-4">
                                             <h3 class="mt-3"><?php echo $codes[$i]->get_num_code() ?></h3>
                                             <!-- <p>They're wherein heaven seed hath nothing</p> -->
-                                            <h3 class="mt-3 text-danger"><?php echo $codes[$i]->get_price() ?> Ariary</h3>
-                                            <button class="btn btn-dark">Choisir</button>
+                                            <h3 class="mt-3 text-danger"><?=$codes[$i]->get_price() ?> Ariary</h3>
+                                            <!-- <button class="btn btn-dark">Choisir</button> -->
                                         </div>
                                     </div>
                                     <?php } ?>
@@ -133,8 +133,8 @@
                                         <div class="d-flex justify-content-around media-body align-self-center p-4">
                                             <h3 class="mt-3"><?php echo $codes[$i]->get_num_code() ?></h3>
                                             <!-- <p>They're wherein heaven seed hath nothing</p> -->
-                                            <h3 class="mt-3 text-danger"><?php echo $codes[$i]->get_price() ?> Ariary</h3>
-                                            <button class="btn btn-dark">Choisir</button>
+                                            <h3 class="mt-3 text-danger"><?=$codes[$i]->get_price() ?> Ariary</h3>
+                                            <!-- <button class="btn btn-dark">Choisir</button> -->
                                         </div>
                                     </div>
                                     <?php } ?>
