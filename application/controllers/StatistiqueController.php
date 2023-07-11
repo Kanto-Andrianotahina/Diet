@@ -15,8 +15,7 @@
         public function index(){
             $nb = $this->Statistique->getDataYear(2023);
             $data['nb_user'] = json_encode($this->Statistique->getDonneenb_user($nb));
-            var_dump($data['nb_user']);
-            $this->load->view('chart');
+            $this->load->view('chart',$data);
         }
 
     }

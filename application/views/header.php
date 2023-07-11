@@ -48,10 +48,10 @@
                             id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?php echo base_url('UserController/')?>">Home</a>
+                                    <a class="nav-link" href="<?php echo base_url('HomeUserController/index')?>">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?php echo base_url('UserController/')?>">Transaction</a>
+                                    <a class="nav-link" href="<?php echo base_url('HomeUserController/index')?>">Transaction</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?php echo base_url('UserController/addInfo')?>">Completion</a>
