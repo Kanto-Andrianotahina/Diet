@@ -28,17 +28,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             try {
                 $this->load->model('User');
                 $name = $this->input->post('name');
-                $first_name = $this->input->post('firstName');
+                $first_name = $this->input->post('firstname');
                 $birthday = $this->input->post('birthday');
-                $email = $this->input->post('email');
-                $id_gender = $this->input->post('idGender');
-                $password = $this->input->post('password');
-                $user = $this->User->getInstance(0,$name, $first_name, $birthday, $email, $id_gender, $password);
+                $email = $this->input->post('mail');
+                $id_gender = $this->input->post('id_gender');
+                $password =$this->User->check_password($this->input->post('password1'),$this->input->post('password2')) ;
+                $user = $this->User->getInstance($name, $first_name, $birthday, $email, $id_gender, $password);
                 $user->insert();
-                redirect('FormController/');
-
+                redirect('UserController/');
             } catch (\Exception $e) {
-                $this->load->view('FO\form-User.php',$e);
+                redirect('FormController/index/'.$e->getMessage());
             }
         }
 

@@ -9,7 +9,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $data['page'] = "FO/acceuil.php";
             $this->load->view("page.php", $data);
         }
-
     }
 
 ?>
