@@ -146,5 +146,25 @@ CREATE TABLE demand (
     FOREIGN KEY (id_user) REFERENCES user(id),
     FOREIGN KEY (id_code) REFERENCES code(id)
 );
-
 INSERT INTO demand (id_user, id_code, date) VALUES (2, 2, '2023-05-06');
+
+CREATE TABLE wallet (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_user INT,
+    id_code INT,
+    date DATE,
+    profit DOUBLE,
+    loss DOUBLE,
+    FOREIGN KEY (id_user) REFERENCES user(id),
+    FOREIGN KEY (id_code) REFERENCES code(id)
+);
+
+INSERT INTO wallet (id_user, id_code, date, profit, loss) VALUES 
+    (2, 10, NOW(), 5000, 0),
+    (2, 22, NOW(), 10000, 0),
+    (2, 44, NOW(), 20000, 0);
+
+SELECT * 
+FROM wallet w
+    JOIN code c ON w.id_code=c.id
+WHERE id_user = 2;

@@ -55,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             return $this->id_state;
         }
 
-        public function get_all_code_dispo($state){
+        public function get_all_code_dispo($state) {
             $this->load->database();
             $sql = "select * from code where state = %d";
             $request = sprintf($sql,$state);
@@ -64,6 +64,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             foreach ($result->result() as $row) {
                 $data[] = $this->getInstace($row->id, $row->num_code, $row->price, $row->state);
             }
+            $this->db->close();
             return $data;
         }
 
@@ -76,6 +77,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             foreach ($result->result() as $row) {
                 $data[] = $this->getInstace($row->id, $row->num_code, $row->price, $row->state);
             }
+            $this->db->close();
             return (count($data) > 0) ? $data[0] : null;
         }
 
@@ -88,8 +90,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         public function demand_code($id_user) {
             $this->load->database();
+            $this->db->trans_begin();
             $sql = "INSERT INTO demand (id_user, id_code, state, date) VALUES (%d, %d, 1, NOW());";
-            $this->db->query(sprintf($sql, $this->db->escape($id_user), $this->db->escape($this->get_id())));
+            $this->db->query(sprintf($sql, $this->db->escape($id_user), $this->get_id()));
+            $sql = "UPDATE code SET state = 0 WHERE id = %d;";
+            $this->db->query(sprintf($sql, $this->get_id()));
+            $this->db->trans_complete();
+            if ($this->db->trans_status() === FALSE) {
+                $this->db->trans_rollback();
+            } else {
+                $this->db->trans_commit();
+            }
             $this->db->close();
         }
 

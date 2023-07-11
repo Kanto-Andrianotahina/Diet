@@ -7,6 +7,14 @@
             $this->load->model('Demand');
             $data['demand'] = $this->Demand->get_all_demand();
             $this->load->view('list-demand',$data);
+    class DemandController extends CI_Controller {
+        
+        public function demand() {
+            $this->load->model("Code");
+            $numero = $this->input->get("numero");
+            $code = $this->Code->verify_code($numero);
+            $code->demand_code(2);
+            redirect(base_url("homeUserController"));
         }
 
         public function List_demand(){
