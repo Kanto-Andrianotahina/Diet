@@ -73,11 +73,14 @@
         
 
 
-        public function addNewDiet($diet,$target,$min,$max,$dure,$price){
+        public function addNewDiet($diet, $target, $min, $max, $dure, $price) {
             $this->load->database();
-            $sql = "insert into diet (diet,id_target,weigth_start,weigth_end,dure,price) values (%s,%d,%d,%d,%d,%d)"; 
+            
+            $sql = "INSERT INTO diet (diet, id_target, weigth_start, weigth_end, dure, price) VALUES (?, ?, ?, ?, ?, ?)";
+            $this->db->query($sql, array($diet, $target, $min, $max, $dure, $price));
             
             $this->db->close();
         }
+        
     }
 ?>

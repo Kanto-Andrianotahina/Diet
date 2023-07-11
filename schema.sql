@@ -177,8 +177,8 @@ create table diet(
     weigth_start DOUBLE,
     weigth_end DOUBLE,
     dure int,
-    price 
-
+    price double,
+    FOREIGN KEY (id_target) REFERENCES target(id)
 ); 
 create table food_regime(
     id INT AUTO_INCREMENT PRIMARY KEY,

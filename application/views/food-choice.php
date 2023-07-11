@@ -45,7 +45,7 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
@@ -58,7 +58,7 @@
                         <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
                 </div>
-            </li>
+            </li> -->
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
@@ -349,7 +349,7 @@
         <div class="mb-3 row">
             <label  class="container-lg"><h1>Choix aliments</h1></label>
         </div>
-        <form action=#" method="post">
+        <form action="FoodChoiceController/" method="post">
             <div class="mb-3 row">
                 <label for="productname" class="col-sm-2 col-form-label">Aliments</label>
                 <div class="col-sm-10">

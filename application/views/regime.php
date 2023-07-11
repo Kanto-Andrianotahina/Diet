@@ -359,7 +359,7 @@
             <div class="mb-3 row">
                 <label for="productname" class="col-sm-2 col-form-label">Objectif</label>
                 <div class="col-sm-10">
-                    <select class="form-control" aria-label=".form-select-lg example" required>
+                    <select class="form-control" aria-label=".form-select-lg example" name="objectif" required>
                     <?php for ($i = 0; $i < count($target); $i++) { ?>
                         <option value="<?php echo $target[$i]->get_id(); ?>"><?php echo $target[$i]->get_value(); ?></option>
                     <?php } ?>
@@ -381,7 +381,13 @@
             <div class="mb-3 row">
                 <label for="productname" class="col-sm-2 col-form-label">Dure</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" name="regime" placeholder="Entrer le nombre de jour du regime " required>
+                    <input type="number" class="form-control" name="dure" placeholder="Entrer le nombre de jour du regime " required>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="productname" class="col-sm-2 col-form-label">Prix</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" name="price" placeholder="Entrer le prix du regime " required>
                 </div>
             </div>
             <div class="mb-3 row" style="margin-left: 845px; margin-top:20px;">
