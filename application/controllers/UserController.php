@@ -41,5 +41,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
         }
 
+        public function addInfo() {
+            $data['page'] = "FO/completion.php";
+            $this->load->view("page.php", $data);
+        }
+
+        public function addDetail() {
+            $this->load->model("User");
+            $size = $this->input->get("taille");
+            $weigth = $this->input->get("poids");
+            $id_user = 2;
+            $user = $this->User->getInstance($id_user, $size, $weigth);
+        } 
+
     }
 ?>

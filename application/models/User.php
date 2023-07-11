@@ -3,12 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User extends CI_Model {
     
+    private $id_user;
     private $name;
     private $first_name;
     private $birthday;
     private $email;
     private $id_gender;
     private $password;
+    private $size;
+    private $weigth;
 
     public function getInstance(
         $names = '',
@@ -26,6 +29,41 @@ class User extends CI_Model {
         $user->set_id_gender($id_genders);
         $user->set_password($passwords);
         return $user;
+    }
+
+    public function getInstance(
+        $id_user = '',
+        $size = 0,
+        $weigth = 0
+    ) {
+        $user = new User();
+        $user->set_id_user($id_user);
+        $user->set_size($size);
+        $user->set_weigth($weigth);
+        return $user;
+    }
+
+    public function set_id_user($id_user) {
+        if (empty($$id_user)) throw new Exception("Champ nom est vide");
+        $this->id_user = $id_user;
+    }
+
+    public function get_id_user() {
+        return $this->id_user;
+    }
+
+    public function set_size($size) {
+        if ($size < 0) throw new Exception('Taille doit etre positif');
+        $this->size = $size;
+    }
+
+    public function get_size() {
+        return $this->size;
+    }
+
+    public function set_weigth($weigth) {
+        if ($weigth < 0) throw new Exception("Poids doit etre positif");
+        $this->weigth = $weigth;
     }
 
     public function set_name($name = '') {
@@ -86,7 +124,6 @@ class User extends CI_Model {
         $this->load->database();
         $sql = "INSERT INTO user (firstname, name, birthday, mail, id_gender, password) VALUES (%s, %s, %s, %s, %d, %s)";
         $this->db->query(sprintf($sql, $this->db->escape($this->get_first_name()), $this->db->escape($this->get_name()), $this->db->escape($this->get_birthday()), $this->db->escape($this->get_email()), $this->get_id_gender(), $this->db->escape($this->get_password())));
-        var_dump(sprintf($sql, $this->db->escape($this->get_first_name()), $this->db->escape($this->get_name()), $this->db->escape($this->get_birthday()), $this->db->escape($this->get_email()), $this->get_id_gender(), $this->db->escape($this->get_password())));
         $this->db->close();
     }
 
@@ -102,6 +139,7 @@ class User extends CI_Model {
             return $user;
         } else throw new Exception("Aucun utilisateur correspondant");
     }
+
     public function getUserById($id){
         $this->load->database();
         $sql = "select * from user where id = '%s'";
@@ -120,6 +158,13 @@ class User extends CI_Model {
         if ($pwd1 == $pwd2){
             return $pwd1;
         } else throw new Exception("Mot de passe incorrect");
+    }
+
+    public function add_info() {
+        $this->load->database();
+        $sql = "INSERT INTO details_user (id_user, size, weigth, date) VALUES (%d, %d, %d, NOW());";
+        $this->db->query(sprintf($sql, $this->db->escape($this->get_id_user()), $this->db->escape($this->get_size()), $this->db->escape($this->get_weigth())));
+        $this->db->close();
     }
     
 
