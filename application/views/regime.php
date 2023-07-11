@@ -374,6 +374,18 @@
                 </div>
             </div>
             <div class="mb-3 row">
+                <label for="productname" class="col-sm-2 col-form-label">Poids min</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" name="weight_min" placeholder="Entrer le poid minimum" required>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="productname" class="col-sm-2 col-form-label">Poids max</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" name="weigth_max" placeholder="Entrer le poid maximum " required>
+                </div>
+            </div>
+            <div class="mb-3 row">
                 <label for="productname" class="col-sm-2 col-form-label">Dure</label>
                 <div class="col-sm-10">
                     <input type="number" class="form-control" name="regime" placeholder="Entrer le nombre de jour du regime " required>

@@ -6,5 +6,10 @@
         public function index(){
             $this->load->view('regime');
         }
+
+        public function list_objectif(){
+            $this->load->model('Regime');
+            $regimes['regime']->
+        }
     }
 ?>
