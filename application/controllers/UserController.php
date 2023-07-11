@@ -44,5 +44,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
         }
 
+        public function log_out() {
+            session_destroy();
+            redirect('UserController/');
+        }
+
     }
 ?>
