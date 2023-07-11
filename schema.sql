@@ -110,6 +110,31 @@ VALUES
     (30000019, 20000.00),
     (30000020, 20000.00);
 
+CREATE table target (
+    id int auto_increment PRIMARY KEY,
+    target VARCHAR(30)
+);
+
+INSERT into TARGET (target) VALUES ('Augmenter le poids'),('Diminuer le poids');
+
+CREATE table regime (
+    id int AUTO_INCREMENT PRIMARY KEY,
+    regime VARCHAR(30),
+    id_target int,
+    weigth_start double,
+    weigth_end double,
+    duration int,
+    price DOUBLE,
+    FOREIGN KEY (id_target) REFERENCES TARGET(id)
+);
+INSERT INTO regime (regime, id_target, weigth_start, weigth_end, duration,price)
+VALUES 
+    ('Régime Amincissant', 2, 2, 3, 30,15000),
+    ('Régime Prise de Masse Musculaire', 1, 1, 2, 60,10000),
+    ('Régime Équilibré', 1, 1.5, 4, 45,5000),
+    ('Régime Végétarien', 1, 1, 5, 60,30000),
+    ('Régime Cétogène', 2, 3, 4, 90,12000);
+
 
 CREATE TABLE demand (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -121,5 +146,4 @@ CREATE TABLE demand (
     FOREIGN KEY (id_code) REFERENCES code(id)
 );
 
-
-INSERT INTO demand (id_user, id_code, state, date) VALUES (2, 2, 1, '2023-04-12');
+INSERT INTO demand (id_user, id_code, date) VALUES (2, 2, '2023-05-06');

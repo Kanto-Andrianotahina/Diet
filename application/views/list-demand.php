@@ -383,11 +383,11 @@
                                     <tbody>
                                         <?php foreach($demand as $row){ ?>
                                         <tr>
-                                            <td><?php echo $row['id_user'];?></td>
-                                            <td><?php echo $row['id_code'];?></td>
-                                            <td><?php echo $row['date'];?></td>
-                                            <td><i class="fas fa-check icon" style="color: green;"></i></td>
-                                            <td><i class="fas fa-times icon" style="color: red;"></i></td>
+                                            <td><?php echo $row->get_firstname();?></td>
+                                            <td><?php echo $row->get_num_code();?></td>
+                                            <td><?php echo $row->get_date();?></td>
+                                            <td><a href="<?php echo base_url('DemandController/validate/'.$row->get_id().'/10')?>"><i class="fas fa-check icon" style="color: green;"></i></a></td>
+                                            <td><a href="<?php echo base_url('DemandController/validate/'.$row->get_id().'/-20')?>"><i class="fas fa-times icon" style="color: red;"></i></a></td>
                                         </tr>
                                         <?php }?>
                                     </tbody>

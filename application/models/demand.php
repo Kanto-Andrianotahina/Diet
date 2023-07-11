@@ -1,11 +1,14 @@
 <?php
     defined('BASEPATH') OR exit('No direct script access allowed');
 
-    class demand extends CI_Model{
+    class Demand extends CI_Model{
         private $id;
         private $id_user;
         private $id_code;
+        private $num_code;
+        private $price;
         private $state;
+        private $firstname;
         private $date;
 
 
@@ -42,10 +45,26 @@
             $this->id_code = $id_code;
         }
     
-        public function get_id_code() {
-            return $this->id_code;
+        public function get_num_code() {
+            return $this->num_code;
         }
     
+        public function set_num_code($num_code) {
+            $this->num_code = $num_code;
+        }
+    
+        public function get_id_code() {
+            return $this->num_code;
+        }
+    
+        public function set_price($price) {
+            $this->price = $price;
+        }
+    
+        public function get_price() {
+            return $this->price;
+        }
+        
         public function set_state($state) {
             $this->state = $state;
         }
@@ -53,6 +72,7 @@
         public function get_state() {
             return $this->state;
         }
+
         public function set_date($date) {
             $this->date = $date;
         }
@@ -61,13 +81,29 @@
             return $this->date;
         }
 
+        public function set_firstname($fristname) {
+            $this->firstname = $fristname;
+        }
+    
+        public function get_firstname() {
+            return $this->firstname;
+        }
+
 
         public function get_all_demand(){
             $this->load->database();
-            $query = $this->db->query("select * from demand where state = -10");
+            $query = $this->db->query("select demand.* , code.num_code, code.price, user.firstname from demand join code on code.id = demand.id_code join user on user.id = demand.id_user where state = -10");
             $data = array();
             if ($query->num_rows() > 0) {
-                $data = $query->result();
+                $demand = new Demand();
+                foreach ($query->result() as $row) {
+                    $demand->set_num_code($row->num_code);
+                    $demand->set_date($row->date);
+                    $demand->set_price($row->price);
+                    $demand->set_firstname($row->firstname);
+                    $demand->set_id($row->id);
+                    $data[] = $demand;
+                }
             }else {
                 $error = $this->db->error();
                 echo "Error occurred: " . $error['message'];
@@ -86,7 +122,7 @@
             $query = $this->db->query("SELECT demand.*, code.num_code FROM demand JOIN code ON demand.id_code = code.id WHERE demand.state = -10 AND demand.id = 1;"); 
             $data = array();
             if ($query->num_rows() > 0) {
-                $data = $query->result();
+                $data[] = $query->result();
             }else {
                 $error = $this->db->error();
                 echo "Error occurred: " . $error['message'];
