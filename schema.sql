@@ -161,12 +161,14 @@ create table type(
 insert into type(categorie) values('Viande rouge');
 insert into type(categorie) values('Legume');
 
+
 create table food(
     id INT AUTO_INCREMENT PRIMARY KEY,
     food VARCHAR(30),
     id_type int,
     FOREIGN KEY (id_type) REFERENCES type(id)
 );
+
 insert into food (food,id_type) values ('Pomme de terre',2);
 insert into food (food,id_type) values ('Viande de boeuf',1);
 
@@ -177,11 +179,12 @@ create table diet(
     weigth_start DOUBLE,
     weigth_end DOUBLE,
     dure int,
-    price 
+    price DOUBLE,
+    FOREIGN KEY (id_target) REFERENCES target(id) 
+);
 
-); 
-create table food_regime(
+create table food_diet(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    id_regime int,
-    FOREIGN KEY (id_regime) REFERENCES (id)
+    id_diet int,
+    FOREIGN KEY (id_diet) REFERENCES diet(id)
 );
