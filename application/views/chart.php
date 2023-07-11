@@ -433,8 +433,7 @@
 
     <script>
     var ctx = document.getElementById('myChart').getContext('2d');
-          var nb_user = "<?php echo $nb_user?>";
-          console.log(nb_user);
+          var nb_user = <?php echo htmlspecialchars($nb_user); ?>;
           var myChart = new Chart(ctx, {
             type: 'line',
             data: {

@@ -40,7 +40,7 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Mot de passe" name="password" value="tendry">
+                                                id="exampleInputPassword" placeholder="Mot de passe" name="password" value="456">
                                         </div>
                                         <?php if(isset($error)) { ?>
                                             <p style = "color: red; font-size: large"><?php echo($error); ?> </p>
