@@ -10,6 +10,9 @@ class User extends CI_Model {
     private $email;
     private $id_gender;
     private $password;
+    private $weigth;
+    private $size;
+    private $date;
 
     public function getInstance(
         $id = 0,
@@ -33,25 +36,16 @@ class User extends CI_Model {
         return $user;
     }
 
-    public function getInstance(
+    public function getInstanceDetails(
         $id_user = '',
         $size = 0,
         $weigth = 0
     ) {
         $user = new User();
-        $user->set_id_user($id_user);
+        $user->set_id($id_user);
         $user->set_size($size);
         $user->set_weigth($weigth);
         return $user;
-    }
-
-    public function set_id_user($id_user) {
-        if (empty($$id_user)) throw new Exception("Champ nom est vide");
-        $this->id_user = $id_user;
-    }
-
-    public function get_id_user() {
-        return $this->id_user;
     }
 
     public function set_size($size) {
@@ -63,9 +57,21 @@ class User extends CI_Model {
         return $this->size;
     }
 
+    public function get_weigth() {
+        return $this->weigth;
+    }
+
     public function set_weigth($weigth) {
         if ($weigth < 0) throw new Exception("Poids doit etre positif");
         $this->weigth = $weigth;
+    }
+
+    public function get_date() {
+        return $this->date;
+    }
+
+    public function set_date($date) {
+        $this->date = $date;
     }
 
     public function set_name($name = '') {
@@ -186,10 +192,15 @@ class User extends CI_Model {
     }
 
     public function add_info() {
-        $this->load->database();
-        $sql = "INSERT INTO details_user (id_user, size, weigth, date) VALUES (%d, %d, %d, NOW());";
-        $this->db->query(sprintf($sql, $this->db->escape($this->get_id_user()), $this->db->escape($this->get_size()), $this->db->escape($this->get_weigth())));
-        $this->db->close();
+        try{
+            $this->load->database();
+            $sql = "INSERT INTO details_user (id_user, size, weigth, date) VALUES (%d, %d, %d, NOW());";
+            $this->db->query(sprintf($sql, $this->get_id(), $this->get_size(), $this->get_weigth()));
+            $this->db->close();
+        } catch (\Exception $e) {
+            throw new Exception('Impossible d inserer ');
+        }
+       
     }
     
 

@@ -63,8 +63,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 session_start();
                 if(isset($_SESSION['id_user'])){
                     $id_user = $_SESSION['id_user'];
+                    $user = $this->User->getInstanceDetails($id_user, $size, $weigth);
+                    $user->add_info();
+                    redirect('UserController\addInfo');
                 }
-                $user = $this->User->getInstance($id_user, $size, $weigth);
             }catch (\Exception $e) {
                 redirect('UserController\addInfo?message='.$e->getMessage());
             }
