@@ -36,11 +36,11 @@
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Entrer votre adresse email..." name="mail">
+                                                placeholder="Entrer votre adresse email..." name="mail" value="tendry@gmail.com">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Mot de passe" name="password">
+                                                id="exampleInputPassword" placeholder="Mot de passe" name="password" value="tendry">
                                         </div>
                                         <?php if(isset($error)) { ?>
                                             <p style = "color: red; font-size: large"><?php echo($error); ?> </p>
