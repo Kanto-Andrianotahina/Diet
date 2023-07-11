@@ -113,7 +113,7 @@
             $sql = "SELECT * 
                     FROM wallet w
                         JOIN code c ON w.id_code=c.id
-                    WHERE id_user = %d;";
+                    WHERE id_user = %d AND id_code IS NOT NULL;";
             $request = sprintf($sql, $id_user);
             $result = $this->db->query($request);
             $data = array();
