@@ -63,14 +63,12 @@
         }
 
 
-
-
         public function get_All_Target(){
             $sql= "select * from target";
             $query = $this->db->query($sql);
             $target = array();
             foreach ($query->result() as $row) {
-                $target[] = $this->getInstance($row->id, $row->id_target,$row->weigth_start,$row->weigth_end,$row->dure,$row->price);
+                $target[] = $this->getInstance($row->id,$row->id_target);
             }
             return $target;
         }

@@ -360,10 +360,9 @@
                 <label for="productname" class="col-sm-2 col-form-label">Objectif</label>
                 <div class="col-sm-10">
                     <select class="form-control" aria-label=".form-select-lg example" required>
-                        <option selected>Chosir l'objectif</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <?php for ($i = 0; $i < count($target); $i++) { ?>
+                        <option value="<?php echo $target[$i]->get_id_target(); ?>"><?php echo $target[$i]->get_value(); ?></option>
+                    <?php } ?>
                     </select>
                 </div>
             </div>
