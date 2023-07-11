@@ -5,8 +5,8 @@
         <h2><?=$wallet->get_total(); ?> Ariary</h2>
     </div>
     <div class="col-md-6 w-50 bg-light p-4 shadow rounded" style="margin-left: 200px;">
-        <h3>Transaction</h3>    
-        <table class="table">
+        <h3>Transaction de code</h3>    
+        <table class="table table-striped mb-0">
             <tr>
                 <th>Date</th>
                 <th>Numero</th>
@@ -16,7 +16,7 @@
             <tr>
                 <td><?=$wallet->get_date() ?></td>
                 <td><?=$wallet->get_code()->get_num_code() ?></td>
-                <td><?=$wallet->get_code()->get_price() ?></td>
+                <td><?=$wallet->get_code()->get_price() ?> Ariary</td>
             </tr>
             <?php } ?>
         </table>
