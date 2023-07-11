@@ -5,8 +5,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
         public function index() {
             $this->load->model('Code');
-            $data['codes'] = $this->Code->get_all_code_dispo(1);
-            $this->load->view("FO/acceuil.php", $data);
+            $data['codes'] = $this->Code->get_all_code_dispo(-10);
+            $data['page'] = "FO/acceuil.php";
+            $this->load->view("page.php", $data);
         }
 
     }
