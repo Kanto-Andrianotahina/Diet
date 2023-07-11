@@ -49,5 +49,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             redirect('UserController/');
         }
 
+        public function addInfo($e = '') {
+            $data['page'] = "FO/completion.php";
+            $date['error'] = $e;
+            $this->load->view("page.php", $data);
+        }
+
+        public function addDetail() {
+            try {
+                $this->load->model("User");
+                $size = $this->input->get("taille");
+                $weigth = $this->input->get("poids");
+                session_start();
+                if(isset($_SESSION['id_user'])){
+                    $id_user = $_SESSION['id_user'];
+                }
+                $user = $this->User->getInstance($id_user, $size, $weigth);
+            }catch (\Exception $e) {
+                redirect('UserController\addInfo?message='.$e->getMessage());
+            }
+            
+        } 
+
     }
 ?>
