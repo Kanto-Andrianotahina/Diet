@@ -11,11 +11,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             try {
                 $mail = $this->input->post('mail');
                 $password = $this->input->post('password');
-        
                 $this->load->model('User');
                 $user = $this->User->checkUser($mail, $password);
                 session_start();
-                $_SESSION['user'] = $user;
+                $_SESSION['id_user'] = $user->get_id();
                 if($user->get_state() == 1){
                     redirect('HomeUserController/index');
                 }

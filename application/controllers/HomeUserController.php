@@ -7,7 +7,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this->load->model('Code');
             $data['codes'] = $this->Code->get_all_code_dispo(-10);
             $data['page'] = "FO/acceuil.php";
-            $this->load->view("page.php", $data);
+            if(isset($_GET['message'])) $data['error'] = $_GET['message'];
+            
+            $this->load->view("FO/acceuil", $data);
         }
     }
 

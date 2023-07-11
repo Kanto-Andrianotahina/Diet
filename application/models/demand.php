@@ -54,7 +54,7 @@
         }
     
         public function get_id_code() {
-            return $this->num_code;
+            return $this->id_code;
         }
     
         public function set_price($price) {
@@ -90,13 +90,20 @@
         }
 
 
-        public function get_all_demand(){
+        public function get_all_demand() {
             $this->load->database();
-            $query = $this->db->query("select demand.*, code.num_code, code.price, user.firstname from demand join code on code.id = demand.id_code join user on user.id = demand.id_user where demand.state = -10");
+            $query = $this->db->query("SELECT demand.*, code.num_code, code.price, user.firstname 
+                                      FROM demand 
+                                      JOIN code ON code.id = demand.id_code 
+                                      JOIN user ON user.id = demand.id_user 
+                                      WHERE demand.state = -10 
+                                      GROUP BY code.num_code");
+            
             $data = array();
+            
             if ($query->num_rows() > 0) {
-                $demand = new Demand();
                 foreach ($query->result() as $row) {
+                    $demand = new Demand();
                     $demand->set_num_code($row->num_code);
                     $demand->set_date($row->date);
                     $demand->set_price($row->price);
@@ -104,30 +111,50 @@
                     $demand->set_id($row->id);
                     $data[] = $demand;
                 }
-            }else {
+            } else {
                 $error = $this->db->error();
                 echo "Error occurred: " . $error['message'];
             }
+            
             return $data;
         }
-
+        
+        public function code_state($id) {
+            $this->load->model('Code');
+            $demand = $this->get_demand_by_Id($id);
+            var_dump($demand->get_id_code());
+            $this->Code->update_state($demand->get_id_code());
+        } 
         public function change_state($id_demande, $state) {
             $this->load->database();
-            $query = sprintf("UPDATE demand SET state = '%s' WHERE id = %d", $state, $id_demande);
+            $query = sprintf("UPDATE demand SET state = %s WHERE id = %d", $state, $id_demande);
             $this->db->query($query);
+            $this->code_state($id_demande);
         }
 
         public function get_demand_by_Id($id){
             $this->load->database();
-            $query = $this->db->query("SELECT demand.id_user,demand.id_code,demand.state as state_demand, code.num_code FROM demand JOIN code ON demand.id_code = code.id WHERE demand.state = -10 AND demand.id = 1;"); 
-            $data = array();
+            $query = $this->db->query("SELECT demand.*, code.num_code, code.price, user.firstname 
+                                      FROM demand 
+                                      JOIN code ON code.id = demand.id_code 
+                                      JOIN user ON user.id = demand.id_user 
+                                      WHERE demand.id = ".$id."
+                                      GROUP BY code.num_code");
+            
             if ($query->num_rows() > 0) {
-                $data[] = $query->result();
-            }else {
-                $error = $this->db->error();
-                echo "Error occurred: " . $error['message'];
+                foreach ($query->result() as $row) {
+                    $demand = new Demand();
+                    $demand->set_num_code($row->num_code);
+                    $demand->set_date($row->date);
+                    $demand->set_price($row->price);
+                    $demand->set_firstname($row->firstname);
+                    $demand->set_id($row->id);
+                    $demand->set_id_code($row->id_code);
+                    return $demand;
+                }
+            } else {
+                throw new Exception(" Non reconnu ");
             }
-            return $data;
         }
     }
 ?>

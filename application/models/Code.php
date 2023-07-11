@@ -55,10 +55,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             return $this->id_state;
         }
 
-        public function get_all_code_dispo($state) {
+        public function get_all_code_dispo() {
             $this->load->database();
-            $sql = "select * from code where state = %d";
-            $request = sprintf($sql,$state);
+            $request = "select * from code";
             $result = $this->db->query($request);
             $data = array();
             foreach ($result->result() as $row) {
@@ -91,7 +90,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function demand_code($id_user) {
             $this->load->database();
             $this->db->trans_begin();
-            $sql = "INSERT INTO demand (id_user, id_code, state, date) VALUES (%d, %d, 1, NOW());";
+            $sql = "INSERT INTO demand (id_user, id_code, date) VALUES (%d, %d, NOW());";
             $this->db->query(sprintf($sql, $this->db->escape($id_user), $this->get_id()));
             $sql = "UPDATE code SET state = 0 WHERE id = %d;";
             $this->db->query(sprintf($sql, $this->get_id()));
@@ -102,6 +101,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $this->db->trans_commit();
             }
             $this->db->close();
+        }
+
+        public function update_state($id) {
+            $this->load->database();
+            $query = sprintf("UPDATE code SET state = 10 WHERE id = %d", $id);
+            $this->db->query($query);
         }
 
     }

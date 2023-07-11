@@ -6,26 +6,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Regime</title>
-    <link rel="icon" href="img/favicon.png">
+    <link rel="icon" href="<?php echo base_url('assets/img/favicon.png'); ?>" type="text/css" >
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css") ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" type="text/css">
     <!-- animate CSS -->
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/animate.css") ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/animate.css') ?>">
     <!-- owl carousel CSS -->
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/owl.carousel.min.css") ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.carousel.min.css') ?>">
     <!-- themify CSS -->
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/themify-icons.css") ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/themify-icons.css') ?>">
     <!-- flaticon CSS -->
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/flaticon.css") ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/flaticon.css') ?>">
     <!-- font awesome CSS -->
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/magnific-popup.css") ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/magnific-popup.css') ?>">
     <!-- swiper CSS -->
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/slick.css") ?>">
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/gijgo.min.css") ?>">
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/nice-select.css") ?>">
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/all.css") ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/slick.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/gijgo.min.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/nice-select.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/all.css') ?>">
     <!-- style CSS -->
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/style.css") ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css') ?>">
 </head>
 
 <body>
@@ -37,7 +37,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"> </a>
+                        <a class="navbar-brand" href="#"> <img src="<?php echo base_url('assets/css/img/logo.png');?>" alt="logo"> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -252,6 +252,17 @@
 
     <!-- food_menu start-->
     <section class="food_menu gray_bg">
+        
+        <div class="container mx-auto w-50 bg-white p-4 rounded">
+            <form action="<?php echo base_url('demandController/demand') ?>" method="get">
+                <input type="text" name="numero" class="form-control" placeholder="Numero">
+                <?php if(isset($error)) { ?>
+                    <p style="color: red;"> <?php echo $error; ?></p>
+                <?php } ?>
+                <input type="submit" class="btn btn-dark mt-3" value="Entrer">
+            </form>
+        </div>
+
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-lg-5">
@@ -300,12 +311,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container mx-auto w-50 bg-white p-4 rounded">
-            <form action="<?php echo base_url('demandController/demand') ?>" method="get">
-                <input type="text" name="numero" class="form-control" placeholder="Numero">
-                <input type="submit" class="btn btn-dark mt-3" value="Entrer">
-            </form>
         </div>
     </section>
     <!-- food_menu part end-->

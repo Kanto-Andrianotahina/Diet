@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User extends CI_Model {
     
+    private $id;
     private $name;
     private $first_name;
     private $birthday;
@@ -12,6 +13,7 @@ class User extends CI_Model {
     private $state;
 
     public function getInstance(
+        $id = 0,
         $names = '',
         $first_names = '',
         $birthdays = '',
@@ -21,6 +23,7 @@ class User extends CI_Model {
         $state
     ){
         $user = new User();
+        $user->set_id($id);
         $user->set_name($names);
         $user->set_first_name($first_names);
         $user->set_birthday($birthdays);
@@ -38,6 +41,15 @@ class User extends CI_Model {
 
     public function get_name() {
         return $this->name;
+    }
+
+    public function set_id($id) {
+        if (empty($id)) throw new Exception("Aucune d'identite retrouvee");
+        $this->id = $id;
+    }
+
+    public function get_id() {
+        return $this->id;
     }
 
     public function set_first_name($first_name) {
@@ -104,27 +116,34 @@ class User extends CI_Model {
 
     public function checkUser($mail, $password) {
         $this->load->database();
-        $sql = "SELECT * FROM user WHERE mail = '%s' AND password = '%s' ";
+        $sql = "SELECT * FROM user WHERE mail = '%s' AND password = '%s'";
         $request = sprintf($sql, $mail, $password);
         $query = $this->db->query($request);
     
         if ($query->num_rows() > 0) {
             $row = $query->row();
-            $user = $this->getInstance($row->name, $row->firstname, $row->birthday,$row->mail, $row->id_gender, $row->password,$row->STATE);
+            $user = $this->getInstance($row->id,$row->name, $row->firstname, $row->birthday, $row->mail, $row->id_gender, $row->password, $row->STATE);
             return $user;
-        } else throw new Exception("Aucun utilisateur correspondant");
-    }
-    public function getUserById($id){
+        } else {
+            throw new Exception("Aucun utilisateur correspondant");
+        }
+    }    
+
+    public function getUserById($id) {
         $this->load->database();
-        $sql = "select * from user where id = '%s'";
-        $request = sprintf($sql,$id);
-        $this->db->query($request);
-        if ($request->num_rows() > 0) {
+        $sql = "SELECT * FROM user WHERE id = '%s'";
+        $request = sprintf($sql, $id);
+        $query = $this->db->query($request);
+        
+        if ($query->num_rows() > 0) {
             $row = $query->row();
-            $user = $this->getInstance($row->name, $row->firstname, $row->birthday,$row->mail, $row->id_gender, $row->password,$row->state);
+            $user = $this->getInstance($row->id,$row->name, $row->firstname, $row->birthday, $row->mail, $row->id_gender, $row->password, $row->STATE);
             return $user;
-        } else throw new Exception("Aucun utilisateur corredpondant");
+        } else {
+            throw new Exception("Aucun utilisateur correspondant");
+        }
     }
+
 
     public function check_password($pwd1,$pwd2) {
         if ($pwd1 == $pwd2){
