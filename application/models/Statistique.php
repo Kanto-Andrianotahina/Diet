@@ -49,19 +49,16 @@ class Statistique extends CI_Model {
 
     }
 
-    public static function getDataMonth($mois,$annee)
+    public function getDataMonth($mois,$annee)
     {
         try{
             $req= "SELECT COUNT(d.id) AS nb_user, d.date as date
             FROM details_user as d
-            join com
-            WHERE EXTRACT(MONTH FROM d.date) = %s
-            AND EXTRACT(YEAR FROM d.date) = %s
-            and 
+            WHERE EXTRACT(MONTH FROM d.date) = 4
+            AND EXTRACT(YEAR FROM d.date) = 2023
             GROUP BY d.date
             ORDER BY d.date;";
             $req = sprintf($req,$mois,$annee);
-            
             $result = $this->db->query($req);
             $res = array();
             foreach ($result->result() as $row) {
@@ -76,24 +73,23 @@ class Statistique extends CI_Model {
         }
     }
 
-    public static function getDataClientsYear($annee)
+    public function getDataYear($annee)
     {
         try{
            
-            $req = "SELECT EXTRACT(MONTH FROM sign_up_date) AS month,
-            COUNT(id_client) AS nb_user_clients
-            FROM client
-            WHERE EXTRACT(YEAR FROM sign_up_date) = %s and id_status = 1
-            GROUP BY EXTRACT(MONTH FROM sign_up_date)
-            ORDER BY EXTRACT(MONTH FROM sign_up_date)";
+            $req = "SELECT EXTRACT(MONTH FROM date) AS month,
+            COUNT(id) AS nb_user
+            FROM details_user
+            WHERE EXTRACT(YEAR FROM date) = 2023
+            GROUP BY EXTRACT(MONTH FROM date)
+            ORDER BY EXTRACT(MONTH FROM date)";
             $req = sprintf($req,$annee);
-            $category = DB::select($req);
+            $result = $this->db->query($req);
             $res = array();
-            foreach ($category as $result) {
+            foreach ($result->result() as $row) {
                 $statique = new Statistique();
-                $statique->setnb_user($result->nb_user_clients);
-                $statique->setMonth($result->month);
-                // $statique->setDate($result->sign_up_date);
+                $statique->set_nb_user($row->nb_user);
+                $statique->set_month($row->month);
                 $res[] = $statique;
             }
             return $res;
@@ -102,174 +98,45 @@ class Statistique extends CI_Model {
         }
     }
 
-    public static function getDataUsersMonth($mois,$annee)
+    public function verifierdonnee()
     {
-        try{
-            $req= "SELECT COUNT(id_users) AS nb_user, sign_up_date 
-            FROM users
-            WHERE EXTRACT(MONTH FROM sign_up_date) = %s
-            AND EXTRACT(YEAR FROM sign_up_date) = %s
-            GROUP BY sign_up_date
-            ORDER BY sign_up_date;";
-            $req = sprintf($req,$mois,$annee);
-            $category = DB::select($req);
-            $res = array();
-            foreach ($category as $result) {
-                $statique = new Statistique();
-                $statique->setnb_user($result->nb_user);
-                $statique->setDate($result->sign_up_date);
-                $res[] = $statique;
-            }
-            return $res;
-        }catch(Exception $e){
-            throw new Exception($e->getMessage());
-        }
+        return array (0,0,0,0,0,0,0,0,0,0);
     }
 
-    public static function getDataUsersYear($annee)
+    public function getDonneenb_user($database)
     {
-        try {
-            $req = "SELECT EXTRACT(MONTH FROM sign_up_date) AS month,
-            COUNT(id_users) AS nb_user_users
-            FROM users
-            WHERE EXTRACT(YEAR FROM sign_up_date) = %s
-            GROUP BY EXTRACT(MONTH FROM sign_up_date)
-            ORDER BY EXTRACT(MONTH FROM sign_up_date)";
-            $req = sprintf($req, $annee);
-            $category = DB::select($req);
-            $res=[];
-            foreach ($category as $result) {
-                $statique = new Statistique();
-                $statique->setnb_user($result->nb_user_users);
-                $statique->setMonth($result->month);
-                // $statique->setDate($result->sign_up_date);
-                $res[] = $statique;
-            }
-            return $res;
-        } catch (Exception $e) {
-            throw new Exception("Impossible d'obtenir les données");
-        }
-    }
-
-    public static function getDataTerrainsMonth($mois,$annee,$category)
-    {
-        try{
-            $req= "SELECT COUNT(id_field) AS nb_user, insert_date 
-            FROM field 
-            WHERE EXTRACT(MONTH FROM insert_date) = %s
-            AND EXTRACT(YEAR FROM insert_date) = %s
-            and state = 1
-            GROUP BY insert_date
-            ORDER BY insert_date;";
-            if($category > 0){
-                $req= "SELECT COUNT(id_field) AS nb_user, insert_date 
-                FROM field 
-                WHERE EXTRACT(MONTH FROM insert_date) = %s
-                AND EXTRACT(YEAR FROM insert_date) = %s
-                AND id_category = %s
-                GROUP BY insert_date
-                ORDER BY insert_date;";
-                $req = sprintf($req,$mois,$annee,$category);
-            }else{
-                $req = sprintf($req,$mois,$annee);
-            }
-            
-            $category = DB::select($req);
-            $res = array();
-            foreach ($category as $result) {
-                $statique = new Statistique();
-                $statique->setnb_user($result->nb_user);
-                $statique->setDate($result->insert_date);
-                $res[] = $statique;
-            }
-            return $res;
-        }catch(Exception $e){
-            throw new Exception("Impossible d'avoir ");
-        }
-    }
-
-    public static function getDataTerrainsYear($annee,$category)
-    {
-        try {
-            $req = "SELECT EXTRACT(MONTH FROM insert_date) AS month,
-            COUNT(id_field) AS nb_user_field
-            FROM field
-            WHERE EXTRACT(YEAR FROM insert_date) = %s
-            and state = 1
-            GROUP BY EXTRACT(MONTH FROM insert_date)
-            ORDER BY EXTRACT(MONTH FROM insert_date) ";
-            if($category > 0){
-                $req = "SELECT EXTRACT(MONTH FROM insert_date) AS month,
-                COUNT(id_field) AS nb_user_field
-                FROM field
-                WHERE EXTRACT(YEAR FROM insert_date) = %s
-                AND id_category = %s
-                GROUP BY EXTRACT(MONTH FROM insert_date)
-                ORDER BY EXTRACT(MONTH FROM insert_date) ";
-                $req = sprintf($req,$annee,$category);
-            }else{
-                $req = sprintf($req,$annee);
-            }
-            $category = DB::select($req);
-            $res=[];
-            foreach ($category as $result) {
-                $statique = new Statistique();
-                $statique->setnb_user($result->nb_user_field);
-                $statique->setMonth($result->month);
-                // $statique->setDate($result->sign_up_date);
-                $res[] = $statique;
-            }
-            return $res;
-        } catch (Exception $e) {
-            throw new Exception("Impossible d'obtenir les données");
-        }
-    }
-
-    public static function verifierdonnee($ini)
-    {
-        if($ini == 'mois' ){
-            return [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-        }else{
-            return [0,0,0,0,0,0,0,0,0,0];
-        }
-    }
-
-    public static function getDonneenb_user($database)
-    {
-        $res=[];
+        $res = array();
         $month = 1;
-        $jour = 1;
-        $ini = 'annee';
-        for($k=0; $k<count($database); $k++){
-            if($database[$k]->getMonth() !=null){
-                for($i = 0;$i<$database[$k]->getMonth()-$month; $i++){
-                    $res = [...$res,0];
+        for ($k = 0; $k < count($database); $k++) {
+            if ($database[$k]->get_month() != null) {
+                for ($i = 0; $i < $database[$k]->get_month() - $month; $i++) {
+                    $res[] = 0;
                 }
-                $res = [...$res,$database[$k]->getnb_user()];
-                if($k == count($database)-1){
-                    for($i = 0;$i<12-$database[$k]->getMonth(); $i++){
-                        $res = [...$res,0];
+                $res[] = $database[$k]->get_nb_user();
+                if ($k == count($database) - 1) {
+                    for ($i = 0; $i < 12 - $database[$k]->get_month(); $i++) {
+                        $res[] = 0;
                     }
                 }
-                $month = count($res)+ 1;
+                $month = count($res) + 1;
             }else{
-                $j = date("d", strtotime($database[$k]->getDate()));
-                for($i = 0;$i<$j-$jour; $i++){
-                    $res = [...$res,0];
-                }
-                $res = [...$res,$database[$k]->getnb_user()];
-                if($k == count($database)-1){
-                    for($i = 0;$i<31-$j; $i++){
-                        $res = [...$res,0];
-                    }
-                }
-                $jour = count($res)+ 1;
-                $ini = 'mois';
+                // $j = date("d", strtotime($database[$k]->getDate()));
+                // for($i = 0;$i<$j-$jour; $i++){
+                //     $res = [...$res,0];
+                // }
+                // $res = [...$res,$database[$k]->getnb_user()];
+                // if($k == count($database)-1){
+                //     for($i = 0;$i<31-$j; $i++){
+                //         $res = [...$res,0];
+                //     }
+                // }
+                // $jour = count($res)+ 1;
+                // $ini = 'mois';
             } 
         }
         if(count($database) ==0)
         {
-            $res = Statistique::verifierdonnee($ini);
+            $res = $this->verifierdonnee();
         }
         return $res;
     }
@@ -282,29 +149,5 @@ class Statistique extends CI_Model {
             $res = $res + $database[$i];
         }
         return $res;
-    }
-
-    public function StatField() {
-        try{
-            $requette = "select count(id_field)as id_field, f.id_category, c.category from field f
-            join category c on c.id_category = f.id_category
-            group by f.id_category, c.category";
-
-            $field = DB::select($requette);
-            $res = array();
-
-            if(count($field) > 0){
-                foreach($field as $result){
-                    $temp = new Statistique();
-                    $temp->setId_field($result->id_field);
-                    $temp->setId_category($result->id_category);
-                    $temp->setCategory($result->category);
-                    $res[] = $temp;
-                }
-            }
-            return $res;
-        } catch(Exception $e){
-            $e->getMessage();
-        }
     }
 }
