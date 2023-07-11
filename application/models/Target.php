@@ -11,6 +11,7 @@
             $target = new Target();
             $target->set_id($id);
             $target->set_value($value);
+            return $target;
         }
         
         public function set_id($id) {
@@ -31,8 +32,8 @@
             $sql= "select * from target";
             $query = $this->db->query($sql);
             $target = array();
-            foreach ($query->result() as $row) {
-                $target[] = $this->getInstance($row->id,$row->id_target);
+            foreach ($query->result() as $row) {  
+                $target[] = $this->getInstance($row->id,$row->value);
             }
             return $target;
         }

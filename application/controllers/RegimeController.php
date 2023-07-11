@@ -4,13 +4,17 @@
     class RegimeController extends CI_Controller{
 
         public function index(){
-            $this->load->view('regime');
+            $this->load->model('Target');
+            $temp = $this->Target->get_All_Target();
+            $data['target'] = $temp;
+            $this->load->view('regime',$data);
         }
 
         public function list_objectif(){
             $this->load->model('Target');
-            $target['regime'] = $this->Target->get_All_Target();
-            $this->load->view('regime',$target);
+            $temp = $this->Target->get_All_Target();
+            $data['target'] = $temp;
+            $this->load->view('regime',$data);
         }
 
     }

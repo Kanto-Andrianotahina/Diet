@@ -347,46 +347,22 @@
 
     <div class="container-lg" style="margin-top: 30px;width: 1000px;">
         <div class="mb-3 row">
-            <label  class="container-lg"><h1>Ajout nouveau regime</h1></label>
+            <label  class="container-lg"><h1>Choix aliments</h1></label>
         </div>
-        <form action="<?php echo base_url('FoodChoiceController/index');?>" method="post">
+        <form action=#" method="post">
             <div class="mb-3 row">
-                <label for="productname" class="col-sm-2 col-form-label">Regime</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name="regime" placeholder="Entrer un nom de regime" required>
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="productname" class="col-sm-2 col-form-label">Objectif</label>
+                <label for="productname" class="col-sm-2 col-form-label">Aliments</label>
                 <div class="col-sm-10">
                     <select class="form-control" aria-label=".form-select-lg example" required>
-                    <?php for ($i = 0; $i < count($target); $i++) { ?>
-                        <option value="<?php echo $target[$i]->get_id(); ?>"><?php echo $target[$i]->get_value(); ?></option>
+                    <?php for ($i = 0; $i < count($food); $i++) { ?>
+                        <option value="<?php echo $food[$i]->get_id(); ?>"><?php echo $food[$i]->get_food(); ?></option>
                     <?php } ?>
                     </select>
                 </div>
             </div>
-            <div class="mb-3 row">
-                <label for="productname" class="col-sm-2 col-form-label">Poids min</label>
-                <div class="col-sm-10">
-                    <input type="number" class="form-control" name="weight_min" placeholder="Entrer le poid minimum" required>
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="productname" class="col-sm-2 col-form-label">Poids max</label>
-                <div class="col-sm-10">
-                    <input type="number" class="form-control" name="weigth_max" placeholder="Entrer le poid maximum " required>
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="productname" class="col-sm-2 col-form-label">Dure</label>
-                <div class="col-sm-10">
-                    <input type="number" class="form-control" name="regime" placeholder="Entrer le nombre de jour du regime " required>
-                </div>
-            </div>
             <div class="mb-3 row" style="margin-left: 845px; margin-top:20px;">
                 <div class="col-sm-20">
-                    <input type="submit" class="btn btn-primary btn-lg" value="Suivant">
+                    <input type="submit" class="btn btn-primary btn-lg" value="Valider">
                 </div>
             </div>
         </form>  

@@ -141,3 +141,47 @@ SELECT *
 FROM wallet w
     JOIN code c ON w.id_code=c.id
 WHERE id_user = 2;
+
+
+create table target(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    value VARCHAR(50)
+);
+
+insert into target(value) values('Perdre de poids');
+insert into target(value) values('Augmenter de poids');
+insert into target(value) values('Atteindre son IMC ideal');
+
+
+
+create table type(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    categorie VARCHAR(30)
+);
+insert into type(categorie) values('Viande rouge');
+insert into type(categorie) values('Legume');
+
+create table food(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    food VARCHAR(30),
+    id_type int,
+    FOREIGN KEY (id_type) REFERENCES type(id)
+);
+insert into food (food,id_type) values ('Pomme de terre',2);
+insert into food (food,id_type) values ('Viande de boeuf',1);
+
+create table diet(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    diet varchar(50),
+    id_target int,
+    weigth_start DOUBLE,
+    weigth_end DOUBLE,
+    dure int,
+    price 
+
+); 
+create table food_regime(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_regime int,
+    FOREIGN KEY (id_regime) REFERENCES (id)
+);
