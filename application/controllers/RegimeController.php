@@ -6,7 +6,7 @@
         parent::__construct();
         session_start();
 
-        if (!isset($_SESSION['user'])) {
+        if (!isset($_SESSION['id_user'])) {
             redirect('UserController/');
         }
     }

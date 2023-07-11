@@ -25,9 +25,26 @@ INSERT INTO user (firstname, name, birthday, mail, id_gender, password,state)
 VALUES ('John', 'Doe', '1990-05-15', 'john.doe@example.com', 1, 'password123',1),
         ('Andrianotahina', 'Kanto', '2003-08-21', 'kanto@gmail.com', 1, '123',2),
         ('Razafimiandrisoa', 'Tendry', '2003-04-04', 'tendry@gmail.com', 1, '456',1),
-        ('Razafimiandrisoa', 'Tendry', '2003-04-04', 'tendry@gmail.com', 1, '456',2),
+        ('Rakoto', 'Bema', '2002-01-11', 'bema@gmail.com', 1, 'bema',2),
         ('Raherinirina', 'Mino', '2002-04-09', 'mino@gmail.com', 2, '789',2),
         ('Jane', 'Smith', '1985-09-22', 'jane.smith@example.com', 2, 'pass456',1);
+
+CREATE TABLE details_user (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_user INT,
+    size DOUBLE,
+    weigth DOUBLE,
+    date DATE not null,
+    FOREIGN KEY (id_user) REFERENCES user(id)
+);
+
+
+INSERT INTO details_user (id_user, size, weigth,date) VALUES
+(1, 170.5, 70.2,'2023-03-12'),
+(3, 165.2, 65.8,'2023-04-02'),
+(5, 180.0, 80.5,'2023-05-30');
+
+
 
 CREATE table code (
     id              INT AUTO_INCREMENT PRIMARY KEY,

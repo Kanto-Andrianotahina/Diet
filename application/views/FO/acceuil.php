@@ -48,16 +48,16 @@
                             id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.html">Home</a>
+                                    <a class="nav-link" href="<?php echo base_url('UserController/')?>">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about.html">About</a>
+                                    <a class="nav-link" href="<?php echo base_url('UserController/')?>">Transaction</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="food_menu.html">Menu</a>
+                                    <a class="nav-link" href="<?php echo base_url('UserController/addInfo')?>">Completion</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="chefs.html">Chefs</a>
+                                    <a class="nav-link" href="<?php echo base_url('UserController/addInfo')?>">Regime</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -119,7 +119,7 @@
                                             <h3 class="mt-3"><?php echo $codes[$i]->get_num_code() ?></h3>
                                             <!-- <p>They're wherein heaven seed hath nothing</p> -->
                                             <h3 class="mt-3 text-danger"><?php echo $codes[$i]->get_price() ?> Ariary</h3>
-                                            <button class="btn btn-dark">Choisir</button>
+                                            <!-- <button class="btn btn-dark">Choisir</button> -->
                                         </div>
                                     </div>
                                     <?php } ?>
@@ -134,7 +134,7 @@
                                             <h3 class="mt-3"><?php echo $codes[$i]->get_num_code() ?></h3>
                                             <!-- <p>They're wherein heaven seed hath nothing</p> -->
                                             <h3 class="mt-3 text-danger"><?php echo $codes[$i]->get_price() ?> Ariary</h3>
-                                            <button class="btn btn-dark">Choisir</button>
+                                            <!-- <button class="btn btn-dark">Choisir</button> -->
                                         </div>
                                     </div>
                                     <?php } ?>

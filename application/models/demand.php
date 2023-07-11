@@ -119,17 +119,18 @@
             return $data;
         }
         
-        public function code_state($id) {
+        public function code_state($id,$state) {
             $this->load->model('Code');
             $demand = $this->get_demand_by_Id($id);
-            var_dump($demand->get_id_code());
-            $this->Code->update_state($demand->get_id_code());
+            if( $state == 10 ){
+                $this->Code->update_state($demand->get_id_code());
+            }
         } 
         public function change_state($id_demande, $state) {
             $this->load->database();
             $query = sprintf("UPDATE demand SET state = %s WHERE id = %d", $state, $id_demande);
             $this->db->query($query);
-            $this->code_state($id_demande);
+            $this->code_state($id_demande,$state);
         }
 
         public function get_demand_by_Id($id){

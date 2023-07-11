@@ -5,27 +5,27 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Dingo</title>
-    <link rel="icon" href="img/favicon.png">
+    <title>Regime</title>
+    <link rel="icon" href="<?php echo base_url('assets/img/favicon.png'); ?>" type="text/css" >
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?=base_url("assets/css/bootstrap.min.css") ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" type="text/css">
     <!-- animate CSS -->
-    <link rel="stylesheet" href="<?=base_url("assets/css/animate.css") ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/animate.css') ?>">
     <!-- owl carousel CSS -->
-    <link rel="stylesheet" href="<?=base_url("assets/css/owl.carousel.min.css") ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.carousel.min.css') ?>">
     <!-- themify CSS -->
-    <link rel="stylesheet" href="<?=base_url("assets/css/themify-icons.css") ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/themify-icons.css') ?>">
     <!-- flaticon CSS -->
-    <link rel="stylesheet" href="<?=base_url("assets/css/flaticon.css") ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/flaticon.css') ?>">
     <!-- font awesome CSS -->
-    <link rel="stylesheet" href="<?=base_url("assets/css/magnific-popup.css") ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/magnific-popup.css') ?>">
     <!-- swiper CSS -->
-    <link rel="stylesheet" href="<?=base_url("assets/css/slick.css") ?>">
-    <link rel="stylesheet" href="<?=base_url("assets/css/gijgo.min.css") ?>">
-    <link rel="stylesheet" href="<?=base_url("assets/css/nice-select.css") ?>">
-    <link rel="stylesheet" href="<?=base_url("assets/css/all.css") ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/slick.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/gijgo.min.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/nice-select.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/all.css') ?>">
     <!-- style CSS -->
-    <link rel="stylesheet" href="<?=base_url("assets/css/style.css") ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css') ?>">
 </head>
 
 <body>
@@ -37,7 +37,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html"> <img src="<?=base_url("assets/img/logo.png") ?>" alt="logo"> </a>
+                        <a class="navbar-brand" href="#"> <img src="<?php echo base_url('assets/css/img/logo.png');?>" alt="logo"> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -48,16 +48,16 @@
                             id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.html">Home</a>
+                                    <a class="nav-link" href="<?php echo base_url('UserController/')?>">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about.html">About</a>
+                                    <a class="nav-link" href="<?php echo base_url('UserController/')?>">Transaction</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="food_menu.html">Menu</a>
+                                    <a class="nav-link" href="<?php echo base_url('UserController/addInfo')?>">Completion</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="chefs.html">Chefs</a>
+                                    <a class="nav-link" href="<?php echo base_url('UserController/addInfo')?>">Regime</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -75,11 +75,10 @@
                             </ul>
                         </div>
                         <div class="menu_btn">
-                            <a href="#" class="btn_1 d-none d-sm-block">book a tabel</a>
+                            <a href="<?php echo base_url('UserController/log_out') ?>" class="btn_1 d-none d-sm-block">Log Out</a>
                         </div>
                     </nav>
                 </div>
             </div>
         </div>
     </header>
-    <!-- Header part end-->

@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         private $id;
         private $num_code;
         private $price;
-        private $id_state;
+        private $state;
 
         public function getInstace(
             $id = '',
