@@ -21,6 +21,7 @@
     <link href="<?php echo base_url('assets/css/sb-admin-2.min.css') ?>" rel="stylesheet">
     <script src="<?php echo base_url('assets/js/Chart.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/jquery.min.js') ?>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     </head>
 
@@ -376,10 +377,7 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Admin</h6>
                                 </div>
                                 <div class="card-body">
-                                    <div class="chart-area">
                                         <canvas id="myChart"></canvas>
-                                    </div>
-                                    <hr>
                                 </div>
                             </div>
 
@@ -435,7 +433,7 @@
 
     <script>
     var ctx = document.getElementById('myChart').getContext('2d');
-          var nb_user = {!! $nb_user !!};
+          var nb_user = "<?php echo $nb_user?>";
           console.log(nb_user);
           var myChart = new Chart(ctx, {
             type: 'line',
